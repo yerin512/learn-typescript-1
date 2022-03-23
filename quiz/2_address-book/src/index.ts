@@ -99,3 +99,5 @@ class AddressBook {
 }
 
 new AddressBook();
+
+// https://joshua1988.github.io/ts/guide/generics.html
