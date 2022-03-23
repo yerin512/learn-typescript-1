@@ -77,6 +77,37 @@ const obj1: Dropdown<string> = { value: 'abc', selected: false };
 const obj2: Dropdown<number> = { value:  55, selected: false };
 
 
-// 
+// 제너릭의 타입 제한
+function logTextLength<T>(text: T[]): T[]{
+    console.log(text.length)
+    return text;
+}
 
+logTextLength<string>(['hi', 'abc']);
 
+// 제너릭의 타입 제한 2 - 정의된 타입 이용하기
+interface LengthType {
+    length: number
+}
+
+function logTextLength2<T extends LengthType>(text: T):T {
+    text.length;
+    return text;
+}
+
+// logTextLength2(10); 오류
+logTextLength2({ length: 10 })
+
+// 제네릭 타입 제한 3 - keyof
+
+interface ShoppingItem {
+    name: string;
+    price: number;
+    stock: number;
+}
+
+function getShoppingItemOption<T extends keyof ShoppingItem>(itemOption: T): T {
+    return itemOption;
+}
+getShoppingItemOption('name');
+getShoppingItemOption('price');
